@@ -8,6 +8,8 @@ saltos = [] #stack
 cuadruplos = [] #fila: .pop(0)
 temporales = 0 # contador de numero de temporales
 comparadores = ['<', '>', '!=']
+opers = ['+', '-', '*', '/']
+gotos = ['Goto', 'GotoF', 'GotoV']
 cubo_semantico = {
     ('int', 'int', '+'): 'int',
     ('int', 'int', '-'): 'int',
@@ -81,7 +83,7 @@ def nueva_var(nombre, tipo, scope):
     if nombre in variables and variables[nombre]['scope'] == scope:
         print('nombre de var duplicado')
     else:
-        variables[nombre] = {'tipo': tipo, 'scope': scope}
+        variables[nombre] = {'tipo': tipo, 'valor': None, 'scope': scope}
 
 def print_vars():
     print(variables)    
@@ -150,9 +152,13 @@ def print_pilas():
 
 def operacion(operador, left_op, right_op):
     resultado = None
-    left_op = int(left_op)
-    right_op = int(right_op)
-    print(left_op, type(left_op), operador, right_op, type(left_op))
+    if left_op in variables:
+        left_op = variables[left_op]['valor']
+    if right_op in variables:
+        right_op = variables[right_op]['valor']
+    left_op = float(left_op)
+    right_op = float(right_op)
+    # print(left_op, type(left_op), operador, right_op, type(left_op))
     if operador == '-':
         resultado = left_op-right_op
     elif operador == '+':
@@ -289,3 +295,43 @@ def cycle2():
 
 def print_string(s):
     crear_cuadruplo('print', s)
+
+def ejecutar_cuadruplos():
+    global variables
+    c = 0
+    while c < len(cuadruplos):
+        cuad = cuadruplos[c]
+        # print()
+        # print('cuadruplo', c)
+        # print(print_cuadruplo(cuad))
+        temp = True
+        if cuad[3] in variables:
+            temp = False
+        if cuad[0] == '=':
+            if temp:
+                nueva_var(cuad[3], 'temp', 'scope')
+            if cuad[1] in variables:
+                variables[cuad[3]]['valor'] = variables[cuad[1]]['valor']
+            else:
+                variables[cuad[3]]['valor'] = cuad[1]
+        elif cuad[0] in opers or cuad[0] in comparadores:
+            resultado = operacion(cuad[0], cuad[1], cuad[2])
+            if temp:
+                nueva_var(cuad[3], 'temp', 'scope')
+            variables[cuad[3]]['valor'] = resultado
+        elif cuad[0] == 'print':
+            if cuad[1] in variables:
+                print(variables[cuad[1]]['valor'])
+            else:
+                print(cuad[1])
+        elif cuad[0] in gotos:
+            if cuad[0] == 'Goto':
+                c = cuad[3] - 1
+            if cuad[0] == 'GotoV':
+                if variables[cuad[1]]['valor'] == True:
+                    c = cuad[3] - 1
+            if cuad[0] == 'GotoF':
+                if variables[cuad[1]]['valor'] == False:
+                    c = cuad[3] - 1
+        # print_vars()
+        c+=1

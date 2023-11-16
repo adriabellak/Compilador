@@ -2,7 +2,7 @@ program Fibonacci;
 var
     n1, n2, n3, num: int;
     cont: int;
-void simplefunc(floaty: float, inty:int)[{}];    
+void simplefunc(param1: float, param2:int)[{}];    
 main
 {
     num = 10;
@@ -10,13 +10,13 @@ main
     n1 = 0;
     n2 = 1;
     if (num < 1) {
-        print(100000000000);
+        print("Secuencia:");
     } else {
         if (num < 2) {
-        print(100000000001);
+        print("Secuencia:");
         print(n1);
         } else {
-        print(100000000001);
+        print("Secuencia:");
         while {
             print(n1);
             n3 = n1 + n2;

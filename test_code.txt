@@ -1,14 +1,14 @@
 program CompilerV1;
 var 
-    foo: int; 
-    bar, foobar, barfoo: float;
+    a: int;
 
 void emptyFunction() [{}];
 void emptyFunction2(x_1: float, y_intercept: int) [{}];
 
 main 
 {
-    print(2 > a)
+    a = 1;
+    print(2 > a);
 }
 
 end
