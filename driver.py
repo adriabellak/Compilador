@@ -5,7 +5,7 @@ from baby_duckParser import baby_duckParser
 from funciones import *
 
 def main():
-    input_stream = FileStream('./test_code.txt')
+    input_stream = FileStream('./fibo.txt')
     lexer = baby_duckLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = baby_duckParser(stream)

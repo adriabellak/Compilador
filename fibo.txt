@@ -10,13 +10,13 @@ main
     n1 = 0;
     n2 = 1;
     if (num < 1) {
-        print("Not a valid number");
+        print(100000000000);
     } else {
         if (num < 2) {
-        print("Fibonacci seq");
+        print(100000000001);
         print(n1);
         } else {
-        print("Fibonacci seq");
+        print(100000000001);
         while {
             print(n1);
             n3 = n1 + n2;
