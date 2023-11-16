@@ -16,7 +16,7 @@ statement   : assign
             ;
 print       : 'print' '(' (expresion {print_expresion()} | CTE_STRING) (',' (expresion {print_expresion()} | CTE_STRING))* ')' ';' ;
 assign      : ID {push_operando($ID.text, 'ID')} EQ {push_operador('=')} expresion {pop_assign()}';' ;
-cycle       : 'while' body 'do' '(' expresion ')' ';' ;
+cycle       : 'while' {cycle1()} body 'do' '(' expresion ')' {cycle2()} ';' ;
 condition   : 'if' '(' expresion ')' {if1()} body ('else' {if3()} body)? ';' {if2()};
 expresion   : exp ( oper_rel {punto8($oper_rel.text)} exp {punto9()})? ;
 oper_rel    : ('<' | '>' | '!=') ;

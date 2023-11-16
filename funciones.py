@@ -276,3 +276,15 @@ def if3():
     f = saltos.pop()
     push_salto(len(cuadruplos)-1)
     llenar_cuadruplo(f, len(cuadruplos))
+
+def cycle1():
+    push_salto(len(cuadruplos))
+
+def cycle2():
+    tipo_expresion = tipos.pop()
+    if tipo_expresion != 'bool':
+        raise ValueError('Expresion de if debe ser de tipo bool')
+    else:
+        resultado = operandos.pop()
+        s = saltos.pop()
+        crear_cuadruplo('GotoV', resultado, None, s)

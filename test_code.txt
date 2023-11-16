@@ -8,15 +8,11 @@ void emptyFunction2(x_1: float, y_intercept: int) [{}];
 
 main 
 {
-    assign1 = 10 * (-5);
-    print(40 + 25);
-    if (foo != bar) { 
-        foo = 1;
-    } else { 
-        bar = 2;
-        print(3);
-    };
-    print(1)
+    while { 
+        i = bar + 1; 
+        j = foo - 1;
+    
+    } do (foo < 10);
 }
 
 end
