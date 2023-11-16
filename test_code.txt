@@ -1,0 +1,15 @@
+program CompilerV1;
+var 
+    foo: int; 
+    bar, foobar, barfoo: float;
+
+void emptyFunction() [{}];
+void emptyFunction2(x_1: float, y_intercept: int) [{}];
+
+main 
+{
+    assign1 = 10 * (-5);
+    print(40 + 25);
+}
+
+end
