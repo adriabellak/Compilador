@@ -55,8 +55,6 @@ cubo_semantico = {
     ('float', 'float', '!='): 'bool',
 }
 
-
-# cambiar esta funcion por una que sirva para el directorio de funciones
 def nueva_func(nombre, parametros):
     if nombre in funciones:
         raise ValueError(f"Nombre de función duplicado ('{nombre}')")
@@ -95,22 +93,22 @@ def buscar_cubo(tipo1, tipo2, operador):
     # return cubo_semantico.get((x, y, operador), 'Error')
 
 def push_operador(op):
-    print('push_operador:', op)
+    # print('push_operador:', op)
     operadores.append(op)
 
 def top_operador():
     if len(operadores) > 0:
-        print('top_operador:', operadores[-1])
+        # print('top_operador:', operadores[-1])
         return operadores[-1]
     else:
-        print('top_operador: vacio')
+        # print('top_operador: vacio')
         return None 
 
 def push_tipo(t):
     tipos.append(t)
 
 def push_operando(op, tipo):
-    print('push_operando:', op)
+    # print('push_operando:', op)
     operandos.append(op)
     if tipo == 'ID':
         # arreglar esto
@@ -136,16 +134,16 @@ def print_cuadruplo(cuad):
     return c
 
 def print_cuadruplos():
-    print('print cuidriplis')
+    print('- Cuádruplos:')
     for i, cuad in enumerate(cuadruplos):
         print(f"{i}: {print_cuadruplo(cuad)}")
 
 def print_pilas():
     print()
-    print("-operadores(",len(operadores),"):", operadores)
-    print("-operandos(", len(operandos), "):", operandos)
-    print("-tipos(",len(tipos),"):", tipos)
-    print("-saltos(",len(saltos),"):", saltos)
+    print("- Operadores(",len(operadores),"):", operadores)
+    print("- Operandos(", len(operandos), "):", operandos)
+    print("- Tipos(",len(tipos),"):", tipos)
+    print("- Saltos(",len(saltos),"):", saltos)
     print_cuadruplos()
     print()
     print()
@@ -179,17 +177,17 @@ def punto1(operando, tipo, signo):
     push_operando(operando, tipo)
 
 def punto2(operador):
-    print('p2')
+    # print('p2')
     push_operador(operador)
 
 def punto3(operador):
-    print('p3')
+    # print('p3')
     push_operador(operador)
 
 def punto4():
-    print('p4')
+    # print('p4')
     if (top_operador() == '+' or top_operador() == '-'):
-        print('p4 suma/resta')
+        # print('p4 suma/resta')
         right_op = operandos.pop()
         right_t = tipos.pop()
         left_op = operandos.pop()
@@ -203,7 +201,7 @@ def punto4():
             push_operando('t' + str(temporales), resultado_t)
 
 def punto5():
-    print('p5')
+    # print('p5')
     if (top_operador() == '*' or top_operador() == '/'):
         right_op = operandos.pop()
         right_t = tipos.pop()

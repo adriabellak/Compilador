@@ -8,7 +8,7 @@ void emptyFunction2(x_1: float, y_intercept: int) [{}];
 
 main 
 {
-    print("A", "b", 3, "C");
+    print(2 > a)
 }
 
 end
