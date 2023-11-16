@@ -10,6 +10,13 @@ main
 {
     assign1 = 10 * (-5);
     print(40 + 25);
+    if (foo != bar) { 
+        foo = 1;
+    } else { 
+        bar = 2;
+        print(3);
+    };
+    print(1)
 }
 
 end

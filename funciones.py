@@ -7,6 +7,7 @@ tipos = [] #stack
 saltos = [] #stack
 cuadruplos = [] #fila: .pop(0)
 temporales = 0 # contador de numero de temporales
+comparadores = ['<', '>', '!=']
 cubo_semantico = {
     ('int', 'int', '+'): 'int',
     ('int', 'int', '-'): 'int',
@@ -87,7 +88,9 @@ def nueva_var(nombre, tipo, scope):
 def print_vars():
     print(variables)    
 
-def buscar_cubo(x, y, operador):
+def buscar_cubo(tipo1, tipo2, operador):
+    if operador in comparadores:
+        return 'bool'
     return 'temp'
     # return cubo_semantico.get((x, y, operador), 'Error')
 
@@ -251,3 +254,25 @@ def print_expresion():
     expresion = operandos.pop()
     tipos.pop()
     crear_cuadruplo('print', expresion)
+
+def llenar_cuadruplo(pendiente, target):
+    cuadruplos[pendiente][3] = target
+
+def if1():
+    tipo_expresion = tipos.pop()
+    if tipo_expresion != 'bool':
+        raise ValueError('Expresion de if debe ser de tipo bool')
+    else:
+        resultado = operandos.pop()
+        push_salto(len(cuadruplos))
+        crear_cuadruplo('GotoF', resultado, None, 'blank')
+
+def if2():
+    cuad_pendiente = saltos.pop()
+    llenar_cuadruplo(cuad_pendiente, len(cuadruplos))
+
+def if3():
+    crear_cuadruplo('Goto', None, None, 'blank')
+    f = saltos.pop()
+    push_salto(len(cuadruplos)-1)
+    llenar_cuadruplo(f, len(cuadruplos))
