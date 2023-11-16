@@ -8,11 +8,7 @@ void emptyFunction2(x_1: float, y_intercept: int) [{}];
 
 main 
 {
-    while { 
-        i = bar + 1; 
-        j = foo - 1;
-    
-    } do (foo < 10);
+    print("A", "b", 3, "C");
 }
 
 end

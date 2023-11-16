@@ -14,7 +14,7 @@ statement   : assign
             | f_call
             | print
             ;
-print       : 'print' '(' (expresion {print_expresion()} | CTE_STRING) (',' (expresion {print_expresion()} | CTE_STRING))* ')' ';' ;
+print       : 'print' '(' (expresion {print_expresion()} | CTE_STRING {print_string($CTE_STRING.text)}) (',' (expresion {print_expresion()} | CTE_STRING {print_string($CTE_STRING.text)}))* ')' ';' ;
 assign      : ID {push_operando($ID.text, 'ID')} EQ {push_operador('=')} expresion {pop_assign()}';' ;
 cycle       : 'while' {cycle1()} body 'do' '(' expresion ')' {cycle2()} ';' ;
 condition   : 'if' '(' expresion ')' {if1()} body ('else' {if3()} body)? ';' {if2()};

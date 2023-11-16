@@ -288,3 +288,6 @@ def cycle2():
         resultado = operandos.pop()
         s = saltos.pop()
         crear_cuadruplo('GotoV', resultado, None, s)
+
+def print_string(s):
+    crear_cuadruplo('print', s)
